@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Leaderboards</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div id="navbar">
+    <a href='index.html'>Home</a>
+    <a href='howto.html'>How to</a>
+    <a href='leaderboard.html'>Leaderboards</a>
+  </div>
+  <div id="bg">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <main>
+    <h1 id="title">Leaderboards</h1>
+    <div id="fg">
+      <div class="left info">
+        <h1>Groups</h1>
+        <table id="groups-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div class="right info">
+        <h1>Languages</h1>
+        <table id="languages-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <script>
+    const groups_table = document.getElementById("groups-table").getElementsByTagName("tbody")[0]
+    const langs_table = document.getElementById("languages-table").getElementsByTagName("tbody")[0]
+
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch-groups")
+      .then(resp => resp.json())
+      .then(data => {
+        var i = 1;
+        data.groups.forEach((grp) => {
+          const row = groups_table.insertRow()
+          const rank = row.insertCell(0)
+          const name = row.insertCell(1)
+          const votes = row.insertCell(2)
+
+          rank.innerHTML = i;
+          name.innerHTML = grp.name
+          votes.innerHTML = grp.votes
+          i += 1
+        })
+      })
+
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch-langs")
+      .then(resp => resp.json())
+      .then(data => {
+        var i = 1;
+        data.votes.forEach((grp) => {
+          const row = langs_table.insertRow()
+          const rank = row.insertCell(0)
+          const name = row.insertCell(1)
+          const votes = row.insertCell(2)
+
+          rank.innerHTML = i;
+          name.innerHTML = grp.name
+          votes.innerHTML = grp.votes
+          i += 1
+        })
+      })
+  </script>
+</body>
+
+</html>
