@@ -72,20 +72,35 @@ async def update_language_votes(update_data: Update):
         raise Exception("Unable to find the document due to the following error: ", e)
 
 
-@app.get('/fetch-group')
-async def fetch_group(group_name: str):
+@app.get('/fetch-groups')
+async def fetch_group():
     try:
         client = MongoClient(URI.format(db_password=DB_PASSOWRD))
         database = client["votes"]
         groups = database["groups"]
 
-        group = groups.find_one({'name': group_name})
-        group_votes: int = group['votes']
+        groups = groups.find().sort({'votes': -1}).limit(10)
 
         client.close()
 
-        return {'status': 200, 'votes': group_votes}
+        return {'status': 200, 'groups': groups}
     except Exception as e:
         raise Exception("Unable to find the document due to the following error: ", e)
+
+@app.get('/fetch-langs')
+async def fetch_langs():
+    try:
+        client = MongoClient(URI.format(db_password=DB_PASSOWRD))
+        database = client["votes"]
+        langs = database["languages"]
+
+        votes = langs.find().sort({'votes': -1})
+
+        client.close()
+
+        return {'status': 200, 'votes': votes}
+    except Exception as e:
+        raise Exception("Unable to find the document due to the following error: ", e)
+
 
 
