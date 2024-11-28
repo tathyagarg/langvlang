@@ -11,6 +11,13 @@ URI = "mongodb+srv://codingtathya:{db_password}@lang-v-lang.xijyg.mongodb.net/?r
 DB_PASSOWRD = os.getenv('PASSWORD')
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_origins=["*"]
+)
 
 @app.get('/')
 async def root():
@@ -29,7 +36,6 @@ async def fetch_language_votes(language: str):
         client.close()
 
         return {'status': 200, 'votes': votes}
-
     except Exception as e:
         raise Exception("Unable to find the document due to the following error: ", e)
 
