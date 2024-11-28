@@ -1,4 +1,4 @@
-fetch("http://0.0.0.0:8000/fetch?language=python")
+fetch("http://0.0.0.0:8080/fetch?language=python")
   .then(resp => {
     if (!resp.ok) {
       throw new Error(`Response not ok.`)
