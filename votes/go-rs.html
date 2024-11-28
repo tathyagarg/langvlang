@@ -53,14 +53,14 @@
       rust: 0
     }
 
-    fetch("http://localhost:8080/fetch?language=go", {
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=go", {
       method: 'GET'
     })
       .then(resp => resp.json())
       .then(data => {document.getElementById("go-vote").innerText = `Votes: ${data.votes}`})
 
 
-    fetch("http://localhost:8080/fetch?language=rust", {
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=rust", {
       method: 'GET'
     })
       .then(resp => resp.json())
@@ -97,7 +97,7 @@
         redirect: "follow"
       };
 
-      fetch("http://localhost:8080/update", requestOptions)
+      fetch("https://plankton-app-jq6f8.ondigitalocean.app/update", requestOptions)
         .then((response) => response.text())
         .then((result) => window.location.reload())
         .catch((error) => console.error(error));
@@ -120,7 +120,7 @@
         redirect: "follow"
       };
 
-      fetch("http://localhost:8080/update", requestOptions)
+      fetch("https://plankton-app-jq6f8.ondigitalocean.app/update", requestOptions)
         .then((response) => response.text())
         .then((result) => window.location.reload())
         .catch((error) => console.error(error));

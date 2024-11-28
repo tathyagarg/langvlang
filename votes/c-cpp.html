@@ -53,14 +53,14 @@
       cpp: 0
     }
 
-    fetch("http://localhost:8080/fetch?language=c", {
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=c", {
       method: 'GET'
     })
       .then(resp => resp.json())
       .then(data => {document.getElementById("c-vote").innerText = `Votes: ${data.votes}`})
 
 
-    fetch("http://localhost:8080/fetch?language=cpp", {
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=cpp", {
       method: 'GET'
     })
       .then(resp => resp.json())
@@ -97,7 +97,7 @@
         redirect: "follow"
       };
 
-      fetch("http://localhost:8080/update", requestOptions)
+      fetch("https://plankton-app-jq6f8.ondigitalocean.app/update", requestOptions)
         .then((response) => response.text())
         .then((result) => window.location.reload())
         .catch((error) => console.error(error));
@@ -120,7 +120,7 @@
         redirect: "follow"
       };
 
-      fetch("http://localhost:8080/update", requestOptions)
+      fetch("https://plankton-app-jq6f8.ondigitalocean.app/update", requestOptions)
         .then((response) => response.text())
         .then((result) => window.location.reload())
         .catch((error) => console.error(error));
