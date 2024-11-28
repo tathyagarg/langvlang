@@ -1,0 +1,92 @@
+* {
+     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+body { margin: 0; }
+
+#bg {
+  min-height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.left, .right {
+  width: 50%;
+}
+
+.left { background-color: white; }
+.right { background-color: black; }
+
+#title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+
+  filter: invert(1);
+  mix-blend-mode: difference;
+
+  font-size: 200px;
+}
+
+#fg {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;  
+}
+
+.left > *, .right > * {
+  filter: invert(1);
+  mix-blend-mode: difference;
+  line-height: 1.75em;
+}
+
+.info {
+  width: calc(65% / 2);
+  margin: 0 auto;
+}
+
+#scroller {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.scroller-slide {
+  animation: 5s slide infinite linear;
+}
+
+#scroller:hover .scroller-slide {
+  animation-play-state: paused;
+}
+
+.py { background-color: #3576a6; }
+.py > * { color: #f7e025; filter: none; mix-blend-mode: normal; }
+.js { background-color: #f7e025; }
+.js > * { color: #3576a6; filter: none; mix-blend-mode: normal; }
+
+
+#logo {
+  background-color: white;
+  padding: 10%;
+  border-radius: 100%;
+  margin: 0 auto;
+  width: fit-content;
+  border: 5px solid black;
+}
+
+.lang-head {
+  font-size: 3em;
+  margin: 0;
+}
