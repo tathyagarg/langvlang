@@ -4,6 +4,7 @@ import os
 import fastapi
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 dotenv.load_dotenv()
 
@@ -18,6 +19,11 @@ app.add_middleware(
     allow_headers=["*"],
     allow_origins=["*"]
 )
+
+class Update(BaseModel):
+    language: str
+    update_by: int
+    group: str
 
 @app.get('/')
 async def root():
@@ -41,22 +47,23 @@ async def fetch_language_votes(language: str):
 
 
 @app.put('/update')
-async def update_language_votes(language: str, update_by: int, group_name: str):
+async def update_language_votes(update_data: Update):
     try:
         client = MongoClient(URI.format(db_password=DB_PASSOWRD))
         database = client["votes"]
         langs = database["languages"]
         groups = database["groups"]
 
-        lang_votes = langs.find_one({'name': language})['votes']
-        langs.update_one({'name': language}, {'$set': {'votes': lang_votes + update_by}})
+        lang_votes = langs.find_one({'name': update_data.language})['votes']
+        langs.update_one({'name': update_data.language}, {'$set': {'votes': lang_votes + update_data.update_by}})
 
-        group = groups.find_one({'name': group_name})
+        group = groups.find_one({'name': update_data.group})
+        print(group, update_data.group)
         if group:
             group_votes: int = group['votes']
-            groups.update_one({'name': group}, {'$set': {'votes': group_votes + update_by}})
+            groups.update_one({'name': update_data.group}, {'$set': {'votes': group_votes + update_data.update_by}})
         else:
-            groups.insert_one({'name': group, 'votes': update_by})
+            groups.insert_one({'name': update_data.group, 'votes': update_data.update_by})
 
         client.close()
 

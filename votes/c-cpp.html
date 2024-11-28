@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Python vs Javascript</title>
+  <title>C vc C++</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
@@ -13,35 +13,35 @@
 <body>
   <main>
     <div id="bg">
-      <div class="left py"></div>
-      <div class="right js"></div>
+      <div class="left c"></div>
+      <div class="right cpp"></div>
     </div>
     <div id="group-holder">
       <input id="group" class="group-entry" placeholder="What do you go by?" />
     </div>
     <div id="fg">
-      <div class="left info py">
-        <h1 class="lang-head" style="text-align: center;">Python</h1>
-        <div id="logo"><img src="../assets/python.png" width="200" /></div>
+      <div class="left info c">
+        <h1 class="lang-head" style="text-align: center;">C</h1>
+        <div id="logo"><img src="../assets/c.png" height="200" width="200" /></div>
         <div class="vote-info">
-          <h2 id="py-vote" class="vote-count">Votes: </h2>
-          <h2 id="py-user-vote" class="vote-count">Votes: </h2>
+          <h2 id="c-vote" class="vote-count">Votes: </h2>
+          <h2 id="c-user-vote" class="vote-count">Votes: </h2>
         </div>
         <div class="vote-buttons">
-          <button id="vote-for-py" onclick="pyvote()" class="vote-button">Vote</button>
-          <button id="cast-vote-for-py" onclick="cast_pyvote()" class="vote-button">Cast</button>
+          <button id="vote-for-c" onclick="cvote()" class="vote-button">Vote</button>
+          <button id="cast-vote-for-c" onclick="cast_cvote()" class="vote-button">Cast</button>
         </div>
       </div>
-      <div class="right info js">
-        <h1 class="lang-head" style="text-align: center;">Javascript</h1>
-        <div id="logo"><img src="../assets/javascript.png" width="200" /></div>
+      <div class="right info cpp">
+        <h1 class="lang-head" style="text-align: center;">C++</h1>
+        <div id="logo"><img src="../assets/cpp.png" width="200" /></div>
         <div class="vote-info">
-          <h2 id="js-vote" class="vote-count">Votes: </h2>
-          <h2 id="js-user-vote" class="vote-count">Votes: </h2>
+          <h2 id="cpp-vote" class="vote-count">Votes: </h2>
+          <h2 id="cpp-user-vote" class="vote-count">Votes: </h2>
         </div>
         <div class="vote-buttons">
-          <button id="vote-for-js" onclick="jsvote()" class="vote-button">Vote</button>
-          <button id="cast-vote-for-js" onclick="cast_jsvote()" class="vote-button">Cast</button>
+          <button id="vote-for-cpp" onclick="cppvote()" class="vote-button">Vote</button>
+          <button id="cast-vote-for-cpp" onclick="cast_cppvote()" class="vote-button">Cast</button>
         </div>
       </div>
     </div>
@@ -49,44 +49,44 @@
   <script>
 
     user = {
-      python: 0,
-      javascript: 0
+      c: 0,
+      cpp: 0
     }
 
-    fetch("http://localhost:8080/fetch?language=python", {
+    fetch("http://localhost:8080/fetch?language=c", {
       method: 'GET'
     })
       .then(resp => resp.json())
-      .then(data => {document.getElementById("py-vote").innerText = `Votes: ${data.votes}`})
+      .then(data => {document.getElementById("c-vote").innerText = `Votes: ${data.votes}`})
 
 
-    fetch("http://localhost:8080/fetch?language=javascript", {
+    fetch("http://localhost:8080/fetch?language=cpp", {
       method: 'GET'
     })
       .then(resp => resp.json())
-      .then(data => {document.getElementById("js-vote").innerText = `Votes: ${data.votes}`})
+      .then(data => {document.getElementById("cpp-vote").innerText = `Votes: ${data.votes}`})
 
 
-    document.getElementById("py-user-vote").innerText = `Your Votes: ${user.python}`
-    document.getElementById("js-user-vote").innerText = `Your Votes: ${user.javascript}`
+    document.getElementById("c-user-vote").innerText = `Your Votes: ${user.c}`
+    document.getElementById("cpp-user-vote").innerText = `Your Votes: ${user.cpp}`
 
-    function pyvote() {
-      user.python += 1
-      document.getElementById("py-user-vote").innerText = `Your Votes: ${user.python}`
+    function cvote() {
+      user.c += 1
+      document.getElementById("c-user-vote").innerText = `Your Votes: ${user.c}`
     }
 
-    function jsvote() {
-      user.javascript += 1
-      document.getElementById("js-user-vote").innerText = `Your Votes: ${user.javascript}`
+    function cppvote() {
+      user.cpp += 1
+      document.getElementById("cpp-user-vote").innerText = `Your Votes: ${user.cpp}`
     }
 
-    function cast_pyvote() {
+    function cast_cvote() {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        "language": "python",
-        "update_by": user.python,
+        "language": "c",
+        "update_by": user.c,
         "group": (document.getElementById("group").value || 'anon').toLowerCase()
       });
 
@@ -103,13 +103,13 @@
         .catch((error) => console.error(error));
     }
 
-    function cast_jsvote() {
+    function cast_cppvote() {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        "language": "javascript",
-        "update_by": user.javascript,
+        "language": "cpp",
+        "update_by": user.cpp,
         "group": (document.getElementById("group").value || 'anon').toLowerCase()
       });
 

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Python vs Javascript</title>
+  <title>Go vs Rust</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
@@ -13,35 +13,35 @@
 <body>
   <main>
     <div id="bg">
-      <div class="left py"></div>
-      <div class="right js"></div>
+      <div class="left go"></div>
+      <div class="right rs"></div>
     </div>
     <div id="group-holder">
       <input id="group" class="group-entry" placeholder="What do you go by?" />
     </div>
     <div id="fg">
-      <div class="left info py">
-        <h1 class="lang-head" style="text-align: center;">Python</h1>
-        <div id="logo"><img src="../assets/python.png" width="200" /></div>
+      <div class="left info go">
+        <h1 class="lang-head" style="text-align: center;">Go</h1>
+        <div id="logo"><img src="../assets/go.png" height="200" width="200" /></div>
         <div class="vote-info">
-          <h2 id="py-vote" class="vote-count">Votes: </h2>
-          <h2 id="py-user-vote" class="vote-count">Votes: </h2>
+          <h2 id="go-vote" class="vote-count">Votes: </h2>
+          <h2 id="go-user-vote" class="vote-count">Votes: </h2>
         </div>
         <div class="vote-buttons">
-          <button id="vote-for-py" onclick="pyvote()" class="vote-button">Vote</button>
-          <button id="cast-vote-for-py" onclick="cast_pyvote()" class="vote-button">Cast</button>
+          <button id="vote-for-go" onclick="govote()" class="vote-button">Vote</button>
+          <button id="cast-vote-for-go" onclick="cast_govote()" class="vote-button">Cast</button>
         </div>
       </div>
-      <div class="right info js">
-        <h1 class="lang-head" style="text-align: center;">Javascript</h1>
-        <div id="logo"><img src="../assets/javascript.png" width="200" /></div>
+      <div class="right info rs">
+        <h1 class="lang-head" style="text-align: center;">Rust</h1>
+        <div id="logo"><img src="../assets/rust.png" width="200" /></div>
         <div class="vote-info">
-          <h2 id="js-vote" class="vote-count">Votes: </h2>
-          <h2 id="js-user-vote" class="vote-count">Votes: </h2>
+          <h2 id="rs-vote" class="vote-count">Votes: </h2>
+          <h2 id="rs-user-vote" class="vote-count">Votes: </h2>
         </div>
         <div class="vote-buttons">
-          <button id="vote-for-js" onclick="jsvote()" class="vote-button">Vote</button>
-          <button id="cast-vote-for-js" onclick="cast_jsvote()" class="vote-button">Cast</button>
+          <button id="vote-for-rs" onclick="rsvote()" class="vote-button">Vote</button>
+          <button id="cast-vote-for-rs" onclick="cast_rsvote()" class="vote-button">Cast</button>
         </div>
       </div>
     </div>
@@ -49,44 +49,44 @@
   <script>
 
     user = {
-      python: 0,
-      javascript: 0
+      go: 0,
+      rust: 0
     }
 
-    fetch("http://localhost:8080/fetch?language=python", {
+    fetch("http://localhost:8080/fetch?language=go", {
       method: 'GET'
     })
       .then(resp => resp.json())
-      .then(data => {document.getElementById("py-vote").innerText = `Votes: ${data.votes}`})
+      .then(data => {document.getElementById("go-vote").innerText = `Votes: ${data.votes}`})
 
 
-    fetch("http://localhost:8080/fetch?language=javascript", {
+    fetch("http://localhost:8080/fetch?language=rust", {
       method: 'GET'
     })
       .then(resp => resp.json())
-      .then(data => {document.getElementById("js-vote").innerText = `Votes: ${data.votes}`})
+      .then(data => {document.getElementById("rs-vote").innerText = `Votes: ${data.votes}`})
 
 
-    document.getElementById("py-user-vote").innerText = `Your Votes: ${user.python}`
-    document.getElementById("js-user-vote").innerText = `Your Votes: ${user.javascript}`
+    document.getElementById("go-user-vote").innerText = `Your Votes: ${user.go}`
+    document.getElementById("rs-user-vote").innerText = `Your Votes: ${user.rust}`
 
-    function pyvote() {
-      user.python += 1
-      document.getElementById("py-user-vote").innerText = `Your Votes: ${user.python}`
+    function govote() {
+      user.go += 1
+      document.getElementById("go-user-vote").innerText = `Your Votes: ${user.go}`
     }
 
-    function jsvote() {
-      user.javascript += 1
-      document.getElementById("js-user-vote").innerText = `Your Votes: ${user.javascript}`
+    function rsvote() {
+      user.rust += 1
+      document.getElementById("rs-user-vote").innerText = `Your Votes: ${user.rust}`
     }
 
-    function cast_pyvote() {
+    function cast_govote() {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        "language": "python",
-        "update_by": user.python,
+        "language": "go",
+        "update_by": user.go,
         "group": (document.getElementById("group").value || 'anon').toLowerCase()
       });
 
@@ -103,13 +103,13 @@
         .catch((error) => console.error(error));
     }
 
-    function cast_jsvote() {
+    function cast_rsvote() {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        "language": "javascript",
-        "update_by": user.javascript,
+        "language": "rust",
+        "update_by": user.rust,
         "group": (document.getElementById("group").value || 'anon').toLowerCase()
       });
 

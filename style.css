@@ -35,7 +35,6 @@ body { margin: 0; }
 }
 
 #fg {
-  margin-top: 100px;
   display: flex;
   flex-direction: row;  
 }
@@ -49,6 +48,9 @@ body { margin: 0; }
 .info {
   width: calc(65% / 2);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #scroller {
@@ -75,7 +77,14 @@ body { margin: 0; }
 .py > * { color: #f7e025; filter: none; mix-blend-mode: normal; }
 .js { background-color: #f7e025; }
 .js > * { color: #3576a6; filter: none; mix-blend-mode: normal; }
-
+.go { background-color: #00add8 }
+.go > * { color: #f74b00; filter: none; mix-blend-mode: normal; }
+.rs { background-color: #f74b00 }
+.rs > * { color: #00add8; filter: none; mix-blend-mode: normal; }
+.c { background-color: #ffffff; }
+.c > * { color: #004482; filter: none; mix-blend-mode: normal; }
+.cpp { background-color: #004482;}
+.cpp > * { color: #ffffff; filter: none; mix-blend-mode: normal; }
 
 #logo {
   background-color: white;
@@ -88,5 +97,82 @@ body { margin: 0; }
 
 .lang-head {
   font-size: 3em;
+  margin: 0;
+}
+
+.vote-count {
+  text-align: center;
+}
+
+.vote-button {
+  border: 3px solid black;
+  background: none;
+
+  padding: 10%;
+  font-size: 2em;
+  font-weight: 700;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.vote-buttons {
+  margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1em;
+}
+
+.vote-buttons > * {
+  color: inherit;
+}
+
+.vote-info {
+  display: flex;
+  gap: 5em;
+}
+
+#group-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  background: none;
+  border: 1px solid black;
+  width: 50%;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  padding: 2.5%;
+  margin: 5% auto;
+  font-weight: 700;
+}
+
+input::placeholder {
+  opacity: 1;
+}
+
+#links {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 0;
+}
+
+#links > a {
+  filter: invert(1);
+  mix-blend-mode: difference;
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+
+  background-color: #000;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+#links > a:first-child {
   margin: 0;
 }
