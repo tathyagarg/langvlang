@@ -86,7 +86,6 @@ async def fetch_group():
             new.append(group)
 
         client.close()
-        print(new)
 
         return {'status': 200, 'groups': new}
     except Exception as e:
@@ -100,10 +99,14 @@ async def fetch_langs():
         langs = database["languages"]
 
         votes = langs.find().sort({'votes': -1})
+        new = []
+        for lang in votes:
+            lang.pop('_id')
+            new.append(lang)
 
         client.close()
 
-        return {'status': 200, 'votes': votes}
+        return {'status': 200, 'votes': new}
     except Exception as e:
         raise Exception("Unable to find the document due to the following error: ", e)
 
