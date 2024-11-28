@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>C vc C++</title>
+  <title>Java vs C#</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
@@ -18,35 +18,35 @@
   </div>
   <main>
     <div id="bg">
-      <div class="left c"></div>
-      <div class="right cpp"></div>
+      <div class="left java"></div>
+      <div class="right cs"></div>
     </div>
     <div id="group-holder">
       <input id="group" class="group-entry" placeholder="Name" />
     </div>
     <div id="fg">
-      <div class="left info c">
-        <h1 class="lang-head" style="text-align: center;">C</h1>
-        <div id="logo"><img src="../assets/c.png" height="200" width="200" /></div>
+      <div class="left info java">
+        <h1 class="lang-head" style="text-align: center;">Java</h1>
+        <div id="logo"><img src="../assets/java.png" width="200" style="aspect-ratio: 1/1;" /></div>
         <div class="vote-info">
-          <h2 id="c-vote" class="vote-count">Votes: </h2>
-          <h2 id="c-user-vote" class="vote-count">Votes: </h2>
+          <h2 id="java-vote" class="vote-count">Votes: </h2>
+          <h2 id="java-user-vote" class="vote-count">Votes: </h2>
         </div>
         <div class="vote-buttons">
-          <button id="vote-for-c" onclick="cvote()" class="vote-button">Vote</button>
-          <button id="cast-vote-for-c" onclick="cast_cvote()" class="vote-button">Cast</button>
+          <button id="vote-for-java" onclick="javavote()" class="vote-button">Vote</button>
+          <button id="cast-vote-for-java" onclick="cast_javavote()" class="vote-button">Cast</button>
         </div>
       </div>
-      <div class="right info cpp">
-        <h1 class="lang-head" style="text-align: center;">C++</h1>
-        <div id="logo"><img src="../assets/cpp.png" width="200" /></div>
+      <div class="right info cs">
+        <h1 class="lang-head" style="text-align: center;">C#</h1>
+        <div id="logo"><img src="../assets/csharp.png" width="200" /></div>
         <div class="vote-info">
-          <h2 id="cpp-vote" class="vote-count">Votes: </h2>
-          <h2 id="cpp-user-vote" class="vote-count">Votes: </h2>
+          <h2 id="cs-vote" class="vote-count">Votes: </h2>
+          <h2 id="cs-user-vote" class="vote-count">Votes: </h2>
         </div>
         <div class="vote-buttons">
-          <button id="vote-for-cpp" onclick="cppvote()" class="vote-button">Vote</button>
-          <button id="cast-vote-for-cpp" onclick="cast_cppvote()" class="vote-button">Cast</button>
+          <button id="vote-for-cs" onclick="csvote()" class="vote-button">Vote</button>
+          <button id="cast-vote-for-cs" onclick="cast_csvote()" class="vote-button">Cast</button>
         </div>
       </div>
     </div>
@@ -54,44 +54,44 @@
   <script>
 
     user = {
-      c: 0,
-      cpp: 0
+      java: 0,
+      csharp: 0
     }
 
-    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=c", {
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=java", {
       method: 'GET'
     })
       .then(resp => resp.json())
-      .then(data => {document.getElementById("c-vote").innerText = `Votes: ${data.votes}`})
+      .then(data => {document.getElementById("java-vote").innerText = `Votes: ${data.votes}`})
 
 
-    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=cpp", {
+    fetch("https://plankton-app-jq6f8.ondigitalocean.app/fetch?language=csharp", {
       method: 'GET'
     })
       .then(resp => resp.json())
-      .then(data => {document.getElementById("cpp-vote").innerText = `Votes: ${data.votes}`})
+      .then(data => {document.getElementById("cs-vote").innerText = `Votes: ${data.votes}`})
 
 
-    document.getElementById("c-user-vote").innerText = `Your Votes: ${user.c}`
-    document.getElementById("cpp-user-vote").innerText = `Your Votes: ${user.cpp}`
+    document.getElementById("java-user-vote").innerText = `Your Votes: ${user.java}`
+    document.getElementById("cs-user-vote").innerText = `Your Votes: ${user.csharp}`
 
-    function cvote() {
-      user.c += 1
-      document.getElementById("c-user-vote").innerText = `Your Votes: ${user.c}`
+    function javavote() {
+      user.java += 1
+      document.getElementById("java-user-vote").innerText = `Your Votes: ${user.java}`
     }
 
-    function cppvote() {
-      user.cpp += 1
-      document.getElementById("cpp-user-vote").innerText = `Your Votes: ${user.cpp}`
+    function csvote() {
+      user.csharp += 1
+      document.getElementById("cs-user-vote").innerText = `Your Votes: ${user.csharp}`
     }
 
-    function cast_cvote() {
+    function cast_javavote() {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        "language": "c",
-        "update_by": user.c,
+        "language": "java",
+        "update_by": user.java,
         "group": (document.getElementById("group").value || 'anon').toLowerCase()
       });
 
@@ -108,13 +108,13 @@
         .catch((error) => console.error(error));
     }
 
-    function cast_cppvote() {
+    function cast_csvote() {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        "language": "cpp",
-        "update_by": user.cpp,
+        "language": "csharp",
+        "update_by": user.csharp,
         "group": (document.getElementById("group").value || 'anon').toLowerCase()
       });
 

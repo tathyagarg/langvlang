@@ -36,7 +36,7 @@ body { margin: 0; }
 
 #fg {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
 }
 
 .left > *, .right > * {
@@ -85,6 +85,18 @@ body { margin: 0; }
 .c > * { color: #004482; filter: none; mix-blend-mode: normal; }
 .cpp { background-color: #004482;}
 .cpp > * { color: #ffffff; filter: none; mix-blend-mode: normal; }
+.swift { background-color: #ffffff; }
+.swift > * { color: #f2592a; filter: none; mix-blend-mode: normal; }
+.obc { background-color: #f2592a;}
+.obc > * { color: #ffffff; filter: none; mix-blend-mode: normal; }
+.cs { background-color: #ffffff; }
+.cs > * { color: #9b6dd6; filter: none; mix-blend-mode: normal; }
+.java { background-color: #9b6dd6;}
+.java > * { color: #ffffff; filter: none; mix-blend-mode: normal; }
+.php { background-color: #cb392f; }
+.php > * { color: #787cb5; filter: none; mix-blend-mode: normal; }
+.rb { background-color: #787cb5;}
+.rb > * { color: #cb392f; filter: none; mix-blend-mode: normal; }
 
 #logo {
   background-color: white;
@@ -147,7 +159,7 @@ input {
   font-size: 1.5em;
   box-sizing: border-box;
   padding: 2.5%;
-  margin: 5% auto;
+  margin: 1% auto;
   font-weight: 700;
 }
 
@@ -175,4 +187,22 @@ input::placeholder {
 
 #links > a:first-child {
   margin: 0;
+}
+
+#navbar {
+  background-color: #000;
+  filter: invert(1);
+  mix-blend-mode: difference;
+
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.25em;
+  padding: 1em;
+}
+
+#navbar > a {
+  font-weight: 800;
+  cursor: pointer;
+  color: #fff !important;
+  text-decoration: none;
 }
