@@ -80,10 +80,15 @@ async def fetch_group():
         groups = database["groups"]
 
         groups = groups.find().sort({'votes': -1}).limit(10)
+        new = []
+        for group in groups:
+            group.pop('_id')
+            new.append(group)
 
         client.close()
+        print(new)
 
-        return {'status': 200, 'groups': groups}
+        return {'status': 200, 'groups': new}
     except Exception as e:
         raise Exception("Unable to find the document due to the following error: ", e)
 
